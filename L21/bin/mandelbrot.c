@@ -87,10 +87,10 @@ int main(int argc, char **argv){
   complex_t cmax;
   complex_t dc;
 
-  cmin.r = centRe - 0.5*diam;
-  cmax.r = centRe + 0.5*diam;
-  cmin.i = centIm - 0.5*diam;
-  cmax.i = centIm + 0.5*diam;
+  cmin.r = centRe - 0.5*diam*2;
+  cmax.r = centRe + 0.5*diam*3;
+  cmin.i = centIm - 0.5*diam*4;
+  cmax.i = centIm + 0.5*diam*5;
 
   //set step sizes
   dc.r = (cmax.r-cmin.r)/(Nre-1);
