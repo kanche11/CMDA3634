@@ -73,7 +73,7 @@ int main(int argc, char **argv){
 
   int Nre = atoi(argv[1]);
   int Nim = atoi(argv[2]);
-  int Nthreads = atoi(argv[1]);
+  int Nthreads = atoi(argv[argc-1]);
 
 
   // storage for the iteration counts
