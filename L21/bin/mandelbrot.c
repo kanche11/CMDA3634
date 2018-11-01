@@ -74,7 +74,8 @@ int main(int argc, char **argv){
   int Nre = atoi(argv[1]);
   int Nim = atoi(argv[2]);
   int Nthreads = atoi(argv[argc-1]);
-
+  Nre = Nre*Nthreads;
+  omp_set_num_threads(Nthreads);
 
   // storage for the iteration counts
   float *count = (float*) malloc(Nre*Nim*sizeof(float));
