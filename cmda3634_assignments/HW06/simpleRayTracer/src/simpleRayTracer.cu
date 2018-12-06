@@ -11,8 +11,9 @@
 
 int main(int argc, char *argv[]){
 
-  clock_t start, end;
-    
+  cudaEvent_t* start, end;
+    cudaEventCreate(start);
+cudaEventCreate(end);
   double tic,toc,elapsed;
   elapsed=0;
   
@@ -92,6 +93,7 @@ int main(int argc, char *argv[]){
     /* render scene */
 dim3 TPB(16,16,1);
 dim3 BPG((WIDTH+15)/16,(HEIGHT+15)/16,1);
+cudaEventRecord(start);
     renderKernel<<<BPG,TPB>>>(WIDTH,
 		 HEIGHT,
 		 scene[0],
@@ -99,7 +101,12 @@ dim3 BPG((WIDTH+15)/16,(HEIGHT+15)/16,1);
 		 cos(theta), 
 		 sin(theta),
 		 c_img);
-    
+cudaEventRecord(end);
+    cudaEventSynchronize(end);
+
+float elapsed;
+cudaEventElapsedTime(&elapsed,start,end);
+elapsed *= 1000;
     end = clock();
     
     dfloat dt = .025, g = 1;
